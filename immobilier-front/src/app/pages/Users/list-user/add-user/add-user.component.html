@@ -1,0 +1,92 @@
+<mat-card class="cardWithShadow theme-card">
+  <mat-card-header>
+    <mat-card-title class="m-b-0">Création d'un nouveau compte</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="b-t-1">
+    <div *ngIf="alertMessage" [ngClass]="{'alert-success': alertType === 'success', 'alert-error': alertType === 'error'}">
+      {{ alertMessage }}
+    </div>
+    <mat-stepper labelPosition="bottom" #stepper (selectionChange)="onStepChange(stepper)" [linear]="isLinear">
+      <!-- Step 1: User Information -->
+
+
+      <mat-step [stepControl]="form" [completed]="form.valid">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="col-lg-4">
+              <mat-label class="f-w-600 m-b-8 d-block">Email</mat-label>
+              <mat-form-field appearance="outline" class="w-100" color="primary">
+                <input matInput formControlName="email" type="email" placeholder="Votre email" required />
+                <mat-error *ngIf="email?.invalid ">
+                  Une adresse email valide est requise.
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4">
+              <mat-label class="f-w-600 m-b-8 d-block">Prénom</mat-label>
+              <mat-form-field appearance="outline" class="w-100" color="primary">
+                <input matInput formControlName="firstName" placeholder="Votre prénom" required />
+                <mat-error *ngIf="firstName?.invalid ">
+                  Le prénom est requis.
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4">
+              <mat-label class="f-w-600 m-b-8 d-block">Nom</mat-label>
+              <mat-form-field appearance="outline" class="w-100" color="primary">
+                <input matInput formControlName="lastName" placeholder="Votre nom" required />
+                <mat-error *ngIf="lastName?.invalid ">
+                  Le nom est requis.
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4">
+              <mat-label class="f-w-600 m-b-8 d-block">Mot de passe</mat-label>
+              <mat-form-field appearance="outline" class="w-100" color="primary">
+                <input matInput formControlName="password" type="password" placeholder="Votre mot de passe" required />
+                <mat-error *ngIf="password?.invalid ">
+                  Le mot de passe est requis (minimum 3 caractères).
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div>
+            <button mat-button>Suivant</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <!-- Step 2: Role Selection -->
+      <div *ngIf="alertMessage" [ngClass]="{'alert-success': alertType === 'success', 'alert-error': alertType === 'error'}">
+        {{ alertMessage }}
+      </div>
+
+      <mat-step [stepControl]="form2" [completed]="form2.valid">
+        <form [formGroup]="form2" (ngSubmit)="save()">
+          <div class="row">
+            <div class="col-lg-6">
+              <mat-label class="f-w-600 m-b-8 d-block">Rôle</mat-label>
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-select formControlName="roleNames" required>
+                  <mat-option *ngFor="let role of roles" [value]="role.value">
+                    {{ role.viewValue }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="roleNames?.invalid ">
+                  Sélectionner au moins un rôle.
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div>
+            <button mat-button matStepperNext>Ajouter
+
+            </button>
+          </div>
+        </form>
+      </mat-step>
+    </mat-stepper>
+  </mat-card-content>
+</mat-card>
+

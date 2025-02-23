@@ -1,0 +1,58 @@
+<mat-card class="cardWithShadow theme-card">
+  <mat-card-header>
+    <mat-card-title class="m-b-0">Mise à jour les données d'un compte </mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="b-t-1">
+    <div *ngIf="alertMessage" [ngClass]="{'alert-success': alertType === 'success', 'alert-error': alertType === 'error'}">
+      {{ alertMessage }}
+    </div>
+    <form class="form" #form="ngForm" (ngSubmit)="updateUser(form)">
+
+      <input matInput name="username" [(ngModel)]="user.username" hidden>
+
+      <!-- Lastname -->
+      <mat-label class="f-w-600 m-b-8 d-block">Nom</mat-label>
+      <mat-form-field appearance="outline" class="w-100" color="primary">
+        <input matInput name="lastName" [(ngModel)]="user.lastName" placeholder="Votre nom" required #lastName="ngModel">
+        <mat-error *ngIf="lastName?.invalid">
+          Le nom est requis.
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Firstname -->
+      <mat-label class="f-w-600 m-b-8 d-block">Prénom</mat-label>
+      <mat-form-field appearance="outline" class="w-100" color="primary">
+        <input matInput name="firstName" [(ngModel)]="user.firstName" placeholder="Votre prénom" required #firstName="ngModel">
+        <mat-error *ngIf="firstName?.invalid">
+          Le prénom est requis.
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Email (readonly) -->
+      <mat-label class="f-w-600 m-b-8 d-block">Email</mat-label>
+      <mat-form-field appearance="outline" class="w-100" color="primary">
+        <input matInput name="email" [(ngModel)]="user.email" readonly class="readonly-input">
+      </mat-form-field>
+
+      <!-- Role Selection -->
+      <mat-label class="f-w-600 m-b-8 d-block">Rôle</mat-label>
+      <mat-form-field appearance="outline" class="w-100" color="primary">
+        <mat-select [(value)]="selectedValues" name="roles" required>
+          <mat-option value="ADMIN">Admin</mat-option>
+          <mat-option value="AGENT">Agent</mat-option>
+          <mat-option value="CLIENT">Client</mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.submitted">
+          Veuillez sélectionner au moins un rôle.
+        </mat-error>
+      </mat-form-field>
+      <!-- Submit Button -->
+      <div class="button-container">
+        <button class="custom-button primary-button" type="submit">
+          <span>Ajouter</span>
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+

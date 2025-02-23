@@ -1,0 +1,55 @@
+table {width:100%;}
+.container {
+  display: flex;
+  margin-top: 10px;
+}
+
+.table-container {
+
+  justify-content: center;
+  position: relative;
+
+}
+.mat-elevation-z8 {
+  margin-top: 20%;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+.filter-container {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.filter-field {
+  width: 100%;
+}
+
+.no-article-found {
+
+  padding: 10px;
+  text-align: center;
+}
+
+
+.icon-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+mat-icon {
+  cursor: pointer;  }
+
+.edit-icon {
+  color: green;
+}
+
+.delete-icon {
+  color: red;
+}
+
+
+

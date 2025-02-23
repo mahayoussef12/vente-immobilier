@@ -1,0 +1,40 @@
+.alert-success, .alert-error {
+  text-align: center;
+  max-width: 500px; /* Largeur max */
+  margin: 0 auto 10px auto; /* Centrage horizontal */
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.alert-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+.primary-button {
+  background-color: blue; /* Définir la couleur de fond en bleu */
+  color: white; /* Définir la couleur du texte en blanc */
+}
+.readonly-input {
+  background-color: #f0f0f0; /* Couleur de fond gris clair */
+  cursor: not-allowed; /* Curseur non autorisé */
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.custom-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}

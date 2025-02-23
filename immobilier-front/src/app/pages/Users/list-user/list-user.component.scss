@@ -1,0 +1,78 @@
+table {width:100%;}
+.container {
+  display: flex;
+  margin-top: 10px;
+}
+
+.add-button-container{
+  margin-bottom: 10px;
+  margin-left: 50%;
+}
+.dropdownfilter {
+  margin-bottom: 10px;
+  margin-left: 180%;
+
+}
+.table-container {
+
+  justify-content: center;
+  position: relative;
+
+}
+.mat-elevation-z8 {
+  margin-top: 20%;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+.filter-container {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.filter-field {
+  width: 100%;
+}
+
+.no-article-found {
+
+  padding: 10px;
+  text-align: center;
+}
+.role-admin {
+  color: red;
+  font-weight: bold;
+}
+
+.role-agent {
+  color: green;
+  font-weight: bold;
+}
+
+.role-client {
+  color: orange;
+  font-weight: bold;
+}
+
+
+.icon-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+mat-icon {
+  cursor: pointer;  }
+
+.edit-icon {
+  color: green;
+}
+
+.delete-icon {
+  color: red;
+}
+
+
+
