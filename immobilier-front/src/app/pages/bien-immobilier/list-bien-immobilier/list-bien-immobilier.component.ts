@@ -16,6 +16,7 @@ import {MatIcon} from "@angular/material/icon";
 import {MatInput} from "@angular/material/input";
 import {NgForOf, NgIf} from "@angular/common";
 import {RouterLink} from "@angular/router";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-list-bien-immobilier',
@@ -74,6 +75,46 @@ export class ListBienImmobilierComponent  implements OnInit{
     const filterValue = (event.target as HTMLInputElement).value;
     this.searchValue = filterValue;
     this.loadData();
+  }
+
+  delete(id: any) {
+    Swal.fire({
+      title: 'Êtes-vous sûr?',
+      text: "Cette action est irréversible!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Oui, supprimer!',
+      cancelButtonText: 'Annuler'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.service.supprimerBien(id).subscribe({
+          next: () => {
+            Swal.fire(
+              'Supprimé!',
+              'Le bien a été supprimé avec succès.',
+              'success'
+            );
+          },
+          error: (err) => {
+            if (err.status === 409) {
+              Swal.fire({
+                icon: 'error',
+                title: 'Suppression impossible',
+                text: 'Ce bien est associé à une vente ou une visite.'
+              });
+            } else {
+              Swal.fire({
+                icon: 'error',
+                title: 'Erreur!',
+                text: 'Une erreur est survenue lors de la suppression.'
+              });
+            }
+          }
+        });
+      }
+    });
   }
 
 }

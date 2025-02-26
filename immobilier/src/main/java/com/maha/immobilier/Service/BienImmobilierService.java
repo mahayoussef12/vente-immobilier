@@ -2,6 +2,8 @@ package com.maha.immobilier.Service;
 
 import com.maha.immobilier.Model.BienImmobilier;
 import com.maha.immobilier.Repository.BienImmobilierRepository;
+import com.maha.immobilier.Repository.VenteRepository;
+import com.maha.immobilier.Repository.VisiteRepository;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
@@ -11,8 +13,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +28,10 @@ public class BienImmobilierService {
     private  BienImmobilierRepository repository;
     @Autowired
     private  EstimationPrixService estimationPrixService;
-
-
+    @Autowired
+    private VenteRepository venteRepository;
+    @Autowired
+    private VisiteRepository visiteRepository;
     public BienImmobilier ajouterBien(BienImmobilier bien) {
         double prixEstime = estimationPrixService.estimerPrix(bien);
         bien.setPrix(prixEstime);
@@ -42,7 +48,11 @@ public class BienImmobilierService {
     }
 
     public void supprimerBien(Long id) {
-        repository.deleteById(id);
+        if (venteRepository.existsByBienId(id) || visiteRepository.existsByBienId(id)) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "BIEN_ASSOCIÉ_VENTE_OU_VISITE");
+        }
+        else {
+        repository.deleteById(id);}
     }
 
 

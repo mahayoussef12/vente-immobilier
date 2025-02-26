@@ -9,4 +9,7 @@ import java.util.List;
 @Repository
 public interface VenteRepository extends JpaRepository<Vente, Long> {
     List<Vente> findByAcheteurId(String acheteurId);
+
+    boolean existsByBienId(Long bienId);
+
 }
