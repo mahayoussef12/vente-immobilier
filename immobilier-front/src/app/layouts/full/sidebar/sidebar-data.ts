@@ -1,7 +1,7 @@
 import { NavItem } from './nav-item/nav-item';
 
 export const navItems: NavItem[] = [
-  {
+ /* {
     navCap: 'Home',
   },
   {
@@ -56,7 +56,7 @@ export const navItems: NavItem[] = [
     iconName: 'table',
     route: '/ui-components/tables',
     bgcolor: 'success',
-  },
+  },*/
   {
     navCap: 'Utilisateurs',
   },
@@ -65,6 +65,7 @@ export const navItems: NavItem[] = [
     iconName: 'users',
     route: '/users/all',
     bgcolor: 'success',
+    roles:['ADMIN']
   },
   {
     navCap: 'Bien Immobilier',
@@ -75,5 +76,6 @@ export const navItems: NavItem[] = [
     iconName: 'home',
     route: '/immobilier/all',
     bgcolor: 'warning',
+    roles:['AGENT']
   },
 ];

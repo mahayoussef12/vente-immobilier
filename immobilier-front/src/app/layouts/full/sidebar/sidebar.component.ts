@@ -9,6 +9,9 @@ import {
 import { BrandingComponent } from './branding.component';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { MaterialModule } from 'src/app/material.module';
+import {KeycloakService} from "../../../services/keycloak.service";
+import {navItems} from "./sidebar-data";
+import {NavItem} from "./nav-item/nav-item";
 
 @Component({
   selector: 'app-sidebar',
@@ -16,10 +19,21 @@ import { MaterialModule } from 'src/app/material.module';
   templateUrl: './sidebar.component.html',
 })
 export class SidebarComponent implements OnInit {
-  constructor() {}
+
   @Input() showToggle = true;
   @Output() toggleMobileNav = new EventEmitter<void>();
   @Output() toggleCollapsed = new EventEmitter<void>();
+  private navItemsFiltered: NavItem[];
 
-  ngOnInit(): void {}
+
+
+  constructor(private authService: KeycloakService) {}
+
+  ngOnInit() {
+    const userRoles = this.authService.getUserRoles(); // Récupération des rôles (tableau de strings)
+    this.navItemsFiltered = navItems.filter(item =>
+      !item.roles || item.roles.some(role => userRoles.includes(role)) // Vérifie si au moins un rôle correspond
+    );
+  }
+
 }

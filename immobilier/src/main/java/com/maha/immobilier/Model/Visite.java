@@ -6,7 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 @Getter
@@ -25,5 +27,7 @@ public class Visite {
 
     private String IDclient;
 
-    private LocalDateTime dateVisite;
+    private LocalDate date;
+    private LocalTime time;
 }
+
