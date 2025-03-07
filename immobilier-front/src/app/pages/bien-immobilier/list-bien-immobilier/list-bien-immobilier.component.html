@@ -52,6 +52,10 @@
             <mat-icon  class="delete-icon" (click)="delete(element.id)">
               delete_outline
             </mat-icon>
+            <mat-icon class="reservation-icon" [routerLink]="['/immobilier/visite-immobilier', element.id]">
+              event_available
+            </mat-icon>
+
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

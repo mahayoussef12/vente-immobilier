@@ -7,6 +7,7 @@ import {
 import {
   DetailsBienImmobillierComponent
 } from "./list-bien-immobilier/details-bien-immobillier/details-bien-immobillier.component";
+import {VisteImmobilierComponent} from "./list-bien-immobilier/viste-immobilier/viste-immobilier.component";
 
 
 
@@ -30,6 +31,10 @@ export const bienImmobilierRoutes: Routes = [
         path:'details-immobilier/:id',
         component:DetailsBienImmobillierComponent
       },
+      {
+        path:'visite-immobilier/:id',
+        component:VisteImmobilierComponent
+      }
     ],
   },
 ];

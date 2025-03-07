@@ -1,0 +1,38 @@
+<mat-card class="cardWithShadow theme-card">
+  <mat-card-header>
+    <mat-card-title class="m-b-0">Planifier une Visite</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="b-t-1">
+    <div *ngIf="alertMessage" [ngClass]="{'alert-success': alertType === 'success', 'alert-error': alertType === 'error'}">
+      {{ alertMessage }}
+    </div>
+
+    <form [formGroup]="visiteForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+
+        <!-- Date -->
+        <div class="col-lg-6">
+          <mat-label class="f-w-600 m-b-8 d-block">Date</mat-label>
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput type="date" formControlName="date" required />
+            <mat-error *ngIf="visiteForm.get('date')?.invalid">La date est requise.</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Heure -->
+        <div class="col-lg-6">
+          <mat-label class="f-w-600 m-b-8 d-block">Heure</mat-label>
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput type="time" formControlName="time" required />
+            <mat-error *ngIf="visiteForm.get('time')?.invalid">L'heure est requise.</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Bouton de soumission -->
+      <div class="text-center m-t-20">
+        <button mat-button color="primary" type="submit" [disabled]="visiteForm.invalid">Planifier</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

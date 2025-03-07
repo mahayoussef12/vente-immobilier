@@ -17,7 +17,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class VisiteService {
     private final VisiteRepository visiteRepository;
-    private final BienImmobilierRepository bienImmobilierRepository;
 
     public List<Visite> getAllVisites() {
         return visiteRepository.findAll();
